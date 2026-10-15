@@ -1,0 +1,66 @@
+contract:
+  name: providers
+  version: "1.0"
+  owner: Procurement
+  description: Validación del maestro de proveedores
+
+file:
+  format: csv
+  delimiter: ","
+  encoding: utf-8
+  allow_extra_columns: false
+
+columns:
+  - name: provider_id
+    type: integer
+    nullable: false
+    unique: true
+
+  - name: business_name
+    type: string
+    nullable: false
+
+  - name: tax_id
+    type: string
+    nullable: false
+    unique: true
+    regex: numeric
+
+  - name: provider_type
+    type: string
+    nullable: false
+    allowed_values:
+      - NATIONAL
+      - INTERNATIONAL
+
+  - name: email
+    type: string
+    nullable: false
+    regex: email
+
+  - name: currency
+    type: string
+    nullable: false
+    allowed_values:
+      - PEN
+      - USD
+      - EUR
+
+  - name: credit_days
+    type: integer
+    nullable: false
+    min: 0
+    max: 180
+
+  - name: registration_date
+    type: date
+    format: "%Y-%m-%d"
+    nullable: false
+
+  - name: status
+    type: string
+    nullable: false
+    allowed_values:
+      - ACTIVE
+      - INACTIVE
+      - BLOCKED

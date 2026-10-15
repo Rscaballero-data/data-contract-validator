@@ -1,0 +1,44 @@
+contract:
+  name: finance_transactions
+  version: "1.0"
+  owner: Finance
+  description: Validación de transacciones financieras
+
+file:
+  format: csv
+  delimiter: ","
+  encoding: utf-8
+  header: true
+  allow_extra_columns: false
+
+columns:
+  - name: transaction_id
+    type: integer
+    nullable: false
+    unique: true
+
+  - name: customer_id
+    type: integer
+    nullable: false
+
+  - name: amount
+    type: decimal
+    nullable: false
+    min: 0
+
+  - name: currency
+    type: string
+    nullable: false
+    allowed_values:
+      - PEN
+      - USD
+
+  - name: transaction_date
+    type: date
+    format: "%Y-%m-%d"
+    nullable: false
+
+  - name: email
+    type: string
+    nullable: true
+    regex: email
